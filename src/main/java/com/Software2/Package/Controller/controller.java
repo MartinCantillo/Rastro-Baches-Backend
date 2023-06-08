@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j // para usar el log
 @RestController
-@RequestMapping("/e")
+@RequestMapping("/")
 public class controller {
     
 }

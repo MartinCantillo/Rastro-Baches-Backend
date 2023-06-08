@@ -6,6 +6,8 @@ package com.Software2.Package.Model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity
 @Table(name = "User")
+@Entity
 public class User {
 
     @Id
@@ -25,8 +27,7 @@ public class User {
 
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "id_usuarioFK")
-    private List<Rol> roles;
-
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 }
