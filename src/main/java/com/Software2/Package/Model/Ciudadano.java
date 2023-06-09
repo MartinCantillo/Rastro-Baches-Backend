@@ -33,7 +33,7 @@ public class Ciudadano {
     private String nombreC;
 
     private String direccionC;
-    private String teleofonoC;
+    private String telefonoC;
 
     @ManyToOne
     @JoinColumn(name = "id_usuarioFK")

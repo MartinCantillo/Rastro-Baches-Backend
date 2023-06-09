@@ -40,7 +40,7 @@ public class Orden {
     @JoinColumn(name = "id_funcionarioFK")
     private Funcionario funcionario;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_personalFK")
-    private List<Personal> personal;
+    private Personal personal;
 }

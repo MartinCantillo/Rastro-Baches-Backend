@@ -29,6 +29,6 @@ public class Personal {
     private String nombre;
 
     private String direccion;
-    private String teleofono;
+    private String telefono;
 
 }

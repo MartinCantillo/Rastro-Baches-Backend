@@ -6,16 +6,18 @@ package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Funcionario;
 import com.Software2.Package.Repository.FuncionarioRepository;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FuncionarioService  implements FuncionarioRepository {
+public class FuncionarioService implements FuncionarioRepository {
 
     @Autowired
     private FuncionarioRepository FuncionarioRepository;
 
+    @Transactional
     @Override
     public <S extends Funcionario> S save(S entity) {
         return FuncionarioRepository.save(entity);
@@ -51,6 +53,7 @@ public class FuncionarioService  implements FuncionarioRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         FuncionarioRepository.deleteById(id);

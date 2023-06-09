@@ -6,6 +6,7 @@ package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Bache;
 import com.Software2.Package.Repository.BacheRepository;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Service;
 public class BacheService implements BacheRepository {
 
     @Autowired
-     private BacheRepository BacheRepository;
+    private BacheRepository BacheRepository;
+
+    @Transactional
     @Override
     public <S extends Bache> S save(S entity) {
         return BacheRepository.save(entity);
@@ -51,6 +54,7 @@ public class BacheService implements BacheRepository {
         return 0;
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         BacheRepository.deleteById(id);

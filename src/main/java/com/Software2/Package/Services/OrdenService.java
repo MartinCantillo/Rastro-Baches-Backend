@@ -6,6 +6,7 @@ package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Orden;
 import com.Software2.Package.Repository.OrdenRepository;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class OrdenService implements OrdenRepository {
     @Autowired
     private OrdenRepository OrdenRepository;
 
+      @Transactional
     @Override
     public <S extends Orden> S save(S entity) {
         return OrdenRepository.save(entity);
@@ -50,7 +52,8 @@ public class OrdenService implements OrdenRepository {
     public long count() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+  @Transactional
     @Override
     public void deleteById(Long id) {
 OrdenRepository.deleteById(id);    }

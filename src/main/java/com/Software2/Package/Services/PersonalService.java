@@ -6,6 +6,7 @@ package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Personal;
 import com.Software2.Package.Repository.PersonalRepository;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class PersonalService implements PersonalRepository {
     @Autowired
     private PersonalRepository PersonalRepository;
 
+    @Transactional
     @Override
     public <S extends Personal> S save(S entity) {
         return PersonalRepository.save(entity);
@@ -51,6 +53,7 @@ public class PersonalService implements PersonalRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+      @Transactional
     @Override
     public void deleteById(Long id) {
 PersonalRepository.deleteById(id);    }

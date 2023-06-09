@@ -6,6 +6,7 @@ package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Rol;
 import com.Software2.Package.Repository.RolRepository;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class RolService implements RolRepository {
     @Autowired
     private RolRepository RolRepository;
 
+    @Transactional
     @Override
     public <S extends Rol> S save(S entity) {
         return RolRepository.save(entity);
@@ -51,9 +53,11 @@ public class RolService implements RolRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
-RolRepository.deleteById(id);    }
+        RolRepository.deleteById(id);
+    }
 
     @Override
     public void delete(Rol entity) {
