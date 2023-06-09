@@ -31,4 +31,10 @@ public class Rol {
 
  @OneToMany(mappedBy = "rol")
     private Set<User> users;
+
+    public Rol(long id) {
+        this.id = id;
+    }
+ 
+ 
 }

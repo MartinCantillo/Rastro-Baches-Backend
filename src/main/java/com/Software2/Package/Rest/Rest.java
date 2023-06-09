@@ -48,7 +48,7 @@ public class Rest {
     @Autowired
     private UserService UserService;
 
-    @PostMapping
+    @PostMapping("/saveuser")
     private ResponseEntity<User> SaveUser(@RequestBody User user) {
         User newUser = UserService.save(user);
         try {
@@ -77,19 +77,19 @@ public class Rest {
         Funcionario newfuncionarioService = funcionarioService.save(funcionario);
         try {
 
-            return ResponseEntity.created(new URI("/Ciudadano/" + newfuncionarioService.getNombreF())).body(newfuncionarioService);
+            return ResponseEntity.created(new URI("/Funcionario/" + newfuncionarioService.getNombreF())).body(newfuncionarioService);
         } catch (URISyntaxException ex) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
-    @PostMapping("/funcionario")
+    @PostMapping("/bache")
     private ResponseEntity<Bache> SaveBache(@RequestBody Bache bache) {
         Bache newbache = bacheService.save(bache);
         try {
 
-            return ResponseEntity.created(new URI("/Ciudadano/" + newbache.getDistrito())).body(newbache);
+            return ResponseEntity.created(new URI("/bache/" + newbache.getDistrito())).body(newbache);
         } catch (URISyntaxException ex) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -101,7 +101,7 @@ public class Rest {
         Averia newaveria = avariaService.save(averia);
         try {
 
-            return ResponseEntity.created(new URI("/Ciudadano/" + newaveria.getTipoDAño())).body(newaveria);
+            return ResponseEntity.created(new URI("/averia/" + newaveria.getTipoDAño())).body(newaveria);
         } catch (URISyntaxException ex) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -113,7 +113,7 @@ public class Rest {
         Personal newPersonal = personalService.save(personal);
         try {
 
-            return ResponseEntity.created(new URI("/Ciudadano/" + newPersonal.getNombre())).body(newPersonal);
+            return ResponseEntity.created(new URI("/personal/" + newPersonal.getNombre())).body(newPersonal);
         } catch (URISyntaxException ex) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
