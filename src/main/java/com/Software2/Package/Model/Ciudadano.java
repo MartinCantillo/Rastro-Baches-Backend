@@ -39,4 +39,8 @@ public class Ciudadano {
     @JoinColumn(name = "id_usuarioFK")
     private User user;
 
+    public Ciudadano(long idC) {
+        this.idC = idC;
+    }
+
 }

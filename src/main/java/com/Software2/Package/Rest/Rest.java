@@ -10,6 +10,7 @@ import com.Software2.Package.Model.Ciudadano;
 import com.Software2.Package.Model.Funcionario;
 import com.Software2.Package.Model.Personal;
 import com.Software2.Package.Model.User;
+import com.Software2.Package.Model.UserRequest;
 import com.Software2.Package.Services.AvariaService;
 import com.Software2.Package.Services.BacheService;
 import com.Software2.Package.Services.CiudadanoService;
@@ -18,13 +19,18 @@ import com.Software2.Package.Services.PersonalService;
 import com.Software2.Package.Services.UserService;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j // para usar el log
@@ -118,6 +124,24 @@ public class Rest {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    @PostMapping("/find")
+    private ResponseEntity<User> getUsePkrByUsername(@RequestBody UserRequest userRequest) {
+        String username = userRequest.getUsername();
+
+        Optional<User> usuarios = UserService.findByusername(username);
+
+        if (usuarios.isPresent()) {
+            User c = usuarios.get();
+
+            return ResponseEntity.ok(c);
+        } else {
+
+            return ResponseEntity.notFound().build();
+
+        }
+
     }
 
 }

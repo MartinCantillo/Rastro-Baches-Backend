@@ -5,8 +5,10 @@
 package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Ciudadano;
+import com.Software2.Package.Model.User;
 import com.Software2.Package.Repository.CiudadanoRepository;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -44,7 +46,6 @@ public class CiudadanoService implements CiudadanoRepository {
         return CiudadanoRepository.findAll();
     }
 
-   
     @Override
     public Iterable<Ciudadano> findAllById(Iterable<Long> ids) {
         return CiudadanoRepository.findAllById(ids);

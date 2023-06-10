@@ -4,6 +4,7 @@
  */
 package com.Software2.Package.Services;
 
+import com.Software2.Package.Model.Ciudadano;
 import com.Software2.Package.Model.User;
 import com.Software2.Package.Repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -77,5 +78,12 @@ UserRepository.deleteById(id);    }
     public void deleteAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Transactional
+    @Override
+    public Optional<User> findByusername(String username) {
+        return UserRepository.findByusername(username);
+    }
+    
 
 }
