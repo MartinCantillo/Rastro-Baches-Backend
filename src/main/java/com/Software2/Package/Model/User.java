@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Column(name = "username", unique = true)
     private String username;
 
     private String password;
@@ -30,4 +30,8 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
+
+    public User(long id) {
+        this.id = id;
+    }
 }
