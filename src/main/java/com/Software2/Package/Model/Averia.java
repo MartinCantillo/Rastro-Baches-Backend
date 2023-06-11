@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
 public class Averia {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idA;
 
-    private String TipoDAño;
+    private String TipoDano;
 
     private String Costo;
 

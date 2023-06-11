@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Funcionario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idF;
 
     private long cedulaF;

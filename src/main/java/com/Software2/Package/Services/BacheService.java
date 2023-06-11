@@ -5,6 +5,7 @@
 package com.Software2.Package.Services;
 
 import com.Software2.Package.Model.Bache;
+import com.Software2.Package.Model.Ciudadano;
 import com.Software2.Package.Repository.BacheRepository;
 import jakarta.transaction.Transactional;
 import java.util.Optional;
@@ -74,6 +75,11 @@ public class BacheService implements BacheRepository {
 
     @Override
     public void deleteAll() {
+    }
+
+    @Override
+    public Optional<Bache> findByciudadano(Ciudadano ciudadano) {
+        return BacheRepository.findByciudadano(ciudadano);
     }
 
 }

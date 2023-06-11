@@ -82,4 +82,9 @@ public class CiudadanoService implements CiudadanoRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public Optional<Ciudadano> findByuser(User user) {
+        return CiudadanoRepository.findByuser(user);
+    }
+
 }

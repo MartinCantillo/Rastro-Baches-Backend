@@ -4,11 +4,12 @@
  */
 package com.Software2.Package.Repository;
 
-
 import com.Software2.Package.Model.Bache;
+import com.Software2.Package.Model.Ciudadano;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
+public interface BacheRepository extends CrudRepository<Bache, Long> {
 
-public interface BacheRepository  extends CrudRepository<Bache, Long>{
-    
+    Optional<Bache> findByciudadano(Ciudadano ciudadano);
 }

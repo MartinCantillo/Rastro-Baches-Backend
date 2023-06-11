@@ -19,6 +19,7 @@ import com.Software2.Package.Services.PersonalService;
 import com.Software2.Package.Services.UserService;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,7 +108,7 @@ public class Rest {
         Averia newaveria = avariaService.save(averia);
         try {
 
-            return ResponseEntity.created(new URI("/averia/" + newaveria.getTipoDAño())).body(newaveria);
+            return ResponseEntity.created(new URI("/averia/" + newaveria.getTipoDano())).body(newaveria);
         } catch (URISyntaxException ex) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -129,8 +130,9 @@ public class Rest {
     @PostMapping("/find")
     private ResponseEntity<User> getUsePkrByUsername(@RequestBody UserRequest userRequest) {
         String username = userRequest.getUsername();
-
+        System.out.println("username que recibe desde el frontend" + username);
         Optional<User> usuarios = UserService.findByusername(username);
+        System.out.println("lo que recibe del servidoe" + usuarios);
 
         if (usuarios.isPresent()) {
             User c = usuarios.get();
@@ -142,6 +144,45 @@ public class Rest {
 
         }
 
+    }
+
+    @GetMapping("find/{id}")
+    private ResponseEntity<Ciudadano> getCiudadano(@PathVariable(name = "id") long id) {
+
+        Optional<Ciudadano> ciudadanos = CiudadanoService.findById(id);
+
+        if (ciudadanos.isPresent()) {
+            Ciudadano c = ciudadanos.get();
+
+            return ResponseEntity.ok(c);
+        } else {
+
+            return ResponseEntity.notFound().build();
+
+        }
+
+    }
+
+//    @GetMapping("/GetAlll")
+//    private ResponseEntity<Iterable<Bache>> getAllBaches() {
+//
+//        return ResponseEntity.ok(bacheService.findAll());
+//    }
+
+  @PostMapping("/GetIdBache")
+    private ResponseEntity<Bache> getBacheById(@RequestBody Ciudadano ciudadano) {
+
+        Optional<Bache> Baches = bacheService.findByciudadano(ciudadano);
+
+        if (Baches.isPresent()) {
+            Bache c = Baches.get();
+
+            return ResponseEntity.ok(c);
+        } else {
+
+            return ResponseEntity.notFound().build();
+
+        }
     }
 
 }

@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 public class Orden {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idO;
 
     private long horas;

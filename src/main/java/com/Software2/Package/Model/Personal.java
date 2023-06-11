@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Personal {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idp;
 
     private long cedula;

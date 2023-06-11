@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
 public class Bache {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idB;
     private String direccionB;
-    private String tamaño;
+    private String tamano;
     private String ubicacionB;
     private String distrito;
     private String urgencia;
