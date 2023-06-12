@@ -20,6 +20,7 @@ import com.Software2.Package.Services.UserService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,10 +128,29 @@ public class Rest {
         }
     }
 
-    @PostMapping("/find")
-    private ResponseEntity<User> getUsePkrByUsername(@RequestBody UserRequest userRequest) {
+//    @PostMapping("/find")
+//    private ResponseEntity<User> getUsePkrByUsername(@RequestBody UserRequest userRequest) {
+//        String username = userRequest.getUsername();
+//        System.out.println("username que recibe desde el frontend" + username);
+//        Optional<User> usuarios = UserService.findByusername(username);
+//        System.out.println("lo que recibe del servidoe" + usuarios);
+//
+//        if (usuarios.isPresent()) {
+//            User c = usuarios.get();
+//
+//            return ResponseEntity.ok(c);
+//        } else {
+//
+//            return ResponseEntity.notFound().build();
+//
+//        }
+//
+//    }
+    @PostMapping("/finduser")
+    private ResponseEntity<User> getpkUser(@RequestBody UserRequest userRequest) {
         String username = userRequest.getUsername();
-        System.out.println("username que recibe desde el frontend" + username);
+        String password = userRequest.getPassword();
+        System.out.println("username que recibe desde el frontend" + username + "paswword");
         Optional<User> usuarios = UserService.findByusername(username);
         System.out.println("lo que recibe del servidoe" + usuarios);
 
@@ -163,17 +183,31 @@ public class Rest {
 
     }
 
+    @PostMapping("findciudadanobyId")
+    private ResponseEntity<Ciudadano> getCiudadanoByFK(@RequestBody User user) {
+        // System.out.println("Dato recibido: " + user);
+
+        Optional<Ciudadano> ciudadano = CiudadanoService.findByUser(user);
+        //     System.out.println("objeto del servidor" + ciudadano);
+        if (ciudadano.isPresent()) {
+            Ciudadano c = ciudadano.get();
+            return ResponseEntity.ok(c);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 //    @GetMapping("/GetAlll")
 //    private ResponseEntity<Iterable<Bache>> getAllBaches() {
 //
 //        return ResponseEntity.ok(bacheService.findAll());
 //    }
 
-  @PostMapping("/GetIdBache")
+    @PostMapping("/GetIdBache")
     private ResponseEntity<Bache> getBacheById(@RequestBody Ciudadano ciudadano) {
-
+        System.out.println("-----");
+        System.out.println("ciudadano enviado desde el frontend"+ciudadano);
         Optional<Bache> Baches = bacheService.findByciudadano(ciudadano);
-
+        System.out.println("respuesta del servidro backend"+Baches);
         if (Baches.isPresent()) {
             Bache c = Baches.get();
 

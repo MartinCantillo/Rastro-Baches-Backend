@@ -83,8 +83,11 @@ public class CiudadanoService implements CiudadanoRepository {
     }
 
     @Override
-    public Optional<Ciudadano> findByuser(User user) {
-        return CiudadanoRepository.findByuser(user);
+    public Optional<Ciudadano> findByUser(User user) {
+        return CiudadanoRepository.findByUser(user);
     }
+
+
+ 
 
 }

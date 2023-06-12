@@ -36,4 +36,8 @@ public class Bache {
     @JoinColumn(name = "id_ciudadanoFK")
     private Ciudadano ciudadano;
 
+    public Bache(long idB) {
+        this.idB = idB;
+    }
+
 }

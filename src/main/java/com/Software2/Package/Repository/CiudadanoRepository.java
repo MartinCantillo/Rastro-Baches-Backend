@@ -12,6 +12,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CiudadanoRepository extends CrudRepository<Ciudadano, Long> {
 
-    Optional<Ciudadano> findByuser(User user);
+    Optional<Ciudadano> findByUser(User user);
 
 }
