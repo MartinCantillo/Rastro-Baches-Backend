@@ -4,9 +4,13 @@
  */
 package com.Software2.Package.Repository;
 
+import com.Software2.Package.Model.Bache;
+import com.Software2.Package.Model.Orden;
 import com.Software2.Package.Model.Personal;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PersonalRepository extends CrudRepository<Personal, Long> {
-    
+
+    List<Personal> findByorden(Orden orden);
 }

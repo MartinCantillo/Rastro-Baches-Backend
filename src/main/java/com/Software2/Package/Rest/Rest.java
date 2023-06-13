@@ -75,10 +75,11 @@ public class Rest {
 
     @PostMapping("/saveOrden")
     private ResponseEntity<Orden> SaveOrden(@RequestBody Orden orden) {
+
         Orden newOrden = ordenService.save(orden);
         try {
 
-            return ResponseEntity.created(new URI("/Ciudadano/" + newOrden.getFuncionario())).body(newOrden);
+            return ResponseEntity.created(new URI("/saveOrden/" + newOrden.getFuncionario())).body(newOrden);
         } catch (URISyntaxException ex) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -135,6 +136,7 @@ public class Rest {
 
     @PostMapping("/personal")
     private ResponseEntity<Personal> SavePersonal(@RequestBody Personal personal) {
+        //     System.out.println("Personal obtenido desde el frontend" +personal.toString());
         Personal newPersonal = personalService.save(personal);
         try {
 
@@ -167,9 +169,9 @@ public class Rest {
     private ResponseEntity<User> getpkUser(@RequestBody UserRequest userRequest) {
         String username = userRequest.getUsername();
         String password = userRequest.getPassword();
-        System.out.println("username que recibe desde el frontend" + username + "paswword");
+        // System.out.println("username que recibe desde el frontend" + username + "paswword");
         Optional<User> usuarios = UserService.findByusername(username);
-        System.out.println("lo que recibe del servidoe" + usuarios);
+        //  System.out.println("lo que recibe del servidoe" + usuarios);
 
         if (usuarios.isPresent()) {
             User c = usuarios.get();
@@ -225,7 +227,7 @@ public class Rest {
 //        System.out.println("-----");
 //        System.out.println("ciudadano enviado desde el frontend" + ciudadano);
         List<Bache> Baches = bacheService.findByciudadano(ciudadano);
-        Baches.stream().forEach(System.out::println);
+        // Baches.stream().forEach(System.out::println);
         if (!Baches.isEmpty()) {
             List<Bache> c = Baches;
 
@@ -239,7 +241,9 @@ public class Rest {
 
     @PostMapping("/getpkfuncionario")
     private ResponseEntity<Funcionario> GetPkFuncionario(@RequestBody User user) {
+        // System.out.println("user fk obtenido del frontend" +user.getId());
         Optional funcionarios = funcionarioService.findByuser(user);
+        //   System.out.println("funconario del servidor respeusta" +funcionarios.toString());
         if (!funcionarios.isEmpty()) {
             Funcionario funcionario = (Funcionario) funcionarios.get();
 
@@ -251,4 +255,20 @@ public class Rest {
         }
     }
 
+    @PostMapping("/GetIdBache")
+    private ResponseEntity<List<Personal>> getPersonalByOrden(@RequestBody Orden orden) {
+//        System.out.println("-----");
+//        System.out.println("ciudadano enviado desde el frontend" + ciudadano);
+        List<Personal> personals = personalService.findByorden(orden);
+        // Baches.stream().forEach(System.out::println);
+        if (!personals.isEmpty()) {
+            List<Personal> c = personals;
+
+            return ResponseEntity.ok(c);
+        } else {
+
+            return ResponseEntity.notFound().build();
+
+        }
+    }
 }

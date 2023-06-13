@@ -33,8 +33,9 @@ public class Personal {
 
     private String direccion;
     private String telefono;
+
     @ManyToOne
     @JoinColumn(name = "id_OrdenFK")
-    private Personal personal;
+    private Orden orden;
 
 }

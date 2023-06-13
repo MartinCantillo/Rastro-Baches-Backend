@@ -4,9 +4,11 @@
  */
 package com.Software2.Package.Services;
 
+import com.Software2.Package.Model.Orden;
 import com.Software2.Package.Model.Personal;
 import com.Software2.Package.Repository.PersonalRepository;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +78,11 @@ PersonalRepository.deleteById(id);    }
     @Override
     public void deleteAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Personal> findByorden(Orden orden) {
+        return PersonalRepository.findByorden(orden);
     }
 
 }

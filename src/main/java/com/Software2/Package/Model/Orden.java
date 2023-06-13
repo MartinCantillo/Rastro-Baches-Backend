@@ -40,5 +40,12 @@ public class Orden {
     @JoinColumn(name = "id_funcionarioFK")
     private Funcionario funcionario;
 
+    @ManyToOne
+    @JoinColumn(name = "id_BacheFK")
+    private Bache bache;
+
+    public Orden(long idO) {
+        this.idO = idO;
+    }
 
 }

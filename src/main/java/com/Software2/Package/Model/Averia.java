@@ -32,8 +32,8 @@ public class Averia {
     private String Costo;
 
     @ManyToOne
-    @JoinColumn(name = "id_ciudadanoFK")
-    private Ciudadano ciudadano;
+    @JoinColumn(name = "id_funcionarioFK")
+    private Funcionario funcionario;
 
     @ManyToOne
     @JoinColumn(name = "id_bacheFK")

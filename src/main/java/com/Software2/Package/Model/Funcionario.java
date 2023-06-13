@@ -23,15 +23,19 @@ import lombok.NoArgsConstructor;
 public class Funcionario {
 
     @Id
-  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idF;
 
     private long cedulaF;
 
     private String nombreF;
 
+    public Funcionario(long idF) {
+        this.idF = idF;
+    }
+
     private String telefonoF;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_usuarioFK")
     private User user;
