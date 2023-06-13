@@ -124,6 +124,7 @@ public class Rest {
 
     @PostMapping("/averia")
     private ResponseEntity<Averia> SaveAveria(@RequestBody Averia averia) {
+        System.out.println("averia obtenida del frontened " +averia.toString());
         Averia newaveria = avariaService.save(averia);
         try {
 
@@ -255,7 +256,7 @@ public class Rest {
         }
     }
 
-    @PostMapping("/GetIdBache")
+    @PostMapping("/GetPersonalByOrden")
     private ResponseEntity<List<Personal>> getPersonalByOrden(@RequestBody Orden orden) {
 //        System.out.println("-----");
 //        System.out.println("ciudadano enviado desde el frontend" + ciudadano);
