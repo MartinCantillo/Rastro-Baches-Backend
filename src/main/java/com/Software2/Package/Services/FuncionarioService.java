@@ -4,9 +4,12 @@
  */
 package com.Software2.Package.Services;
 
+import com.Software2.Package.Model.Bache;
 import com.Software2.Package.Model.Funcionario;
+import com.Software2.Package.Model.User;
 import com.Software2.Package.Repository.FuncionarioRepository;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,7 +67,7 @@ public class FuncionarioService implements FuncionarioRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    @Override 
     public void deleteAllById(Iterable<? extends Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -77,5 +80,10 @@ public class FuncionarioService implements FuncionarioRepository {
     @Override
     public void deleteAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Optional<Funcionario> findByuser(User user) {
+        return FuncionarioRepository.findByuser(user);
     }
 }

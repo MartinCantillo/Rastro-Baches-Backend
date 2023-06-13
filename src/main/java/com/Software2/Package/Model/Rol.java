@@ -29,7 +29,7 @@ public class Rol {
     //@NotEmpty
     private String nombre;
 
- @OneToMany(mappedBy = "rol")
+    @OneToMany(mappedBy = "rol")
     private Set<User> users;
 
     public Rol(long id) {
@@ -38,6 +38,5 @@ public class Rol {
 
     public Rol() {
     }
- 
- 
+
 }

@@ -8,6 +8,7 @@ import com.Software2.Package.Model.Averia;
 import com.Software2.Package.Model.Bache;
 import com.Software2.Package.Model.Ciudadano;
 import com.Software2.Package.Model.Funcionario;
+import com.Software2.Package.Model.Orden;
 import com.Software2.Package.Model.Personal;
 import com.Software2.Package.Model.User;
 import com.Software2.Package.Model.UserRequest;
@@ -15,6 +16,7 @@ import com.Software2.Package.Services.AvariaService;
 import com.Software2.Package.Services.BacheService;
 import com.Software2.Package.Services.CiudadanoService;
 import com.Software2.Package.Services.FuncionarioService;
+import com.Software2.Package.Services.OrdenService;
 import com.Software2.Package.Services.PersonalService;
 import com.Software2.Package.Services.UserService;
 import java.net.URI;
@@ -44,6 +46,9 @@ public class Rest {
     private PersonalService personalService;
 
     @Autowired
+    private OrdenService ordenService;
+
+    @Autowired
     private AvariaService avariaService;
 
     @Autowired
@@ -64,6 +69,18 @@ public class Rest {
             return ResponseEntity.created(new URI("/user/" + newUser.getUsername())).body(newUser);
         } catch (URISyntaxException ex) {
             //aca por si hay algun error
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @PostMapping("/saveOrden")
+    private ResponseEntity<Orden> SaveOrden(@RequestBody Orden orden) {
+        Orden newOrden = ordenService.save(orden);
+        try {
+
+            return ResponseEntity.created(new URI("/Ciudadano/" + newOrden.getFuncionario())).body(newOrden);
+        } catch (URISyntaxException ex) {
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -196,22 +213,37 @@ public class Rest {
             return ResponseEntity.notFound().build();
         }
     }
-//    @GetMapping("/GetAlll")
-//    private ResponseEntity<Iterable<Bache>> getAllBaches() {
-//
-//        return ResponseEntity.ok(bacheService.findAll());
-//    }
+
+    @GetMapping("/GetAllBache")
+    private ResponseEntity<Iterable<Bache>> getAllBaches() {
+
+        return ResponseEntity.ok(bacheService.findAll());
+    }
 
     @PostMapping("/GetIdBache")
-    private ResponseEntity<Bache> getBacheById(@RequestBody Ciudadano ciudadano) {
-        System.out.println("-----");
-        System.out.println("ciudadano enviado desde el frontend"+ciudadano);
-        Optional<Bache> Baches = bacheService.findByciudadano(ciudadano);
-        System.out.println("respuesta del servidro backend"+Baches);
-        if (Baches.isPresent()) {
-            Bache c = Baches.get();
+    private ResponseEntity<List<Bache>> getBacheById(@RequestBody Ciudadano ciudadano) {
+//        System.out.println("-----");
+//        System.out.println("ciudadano enviado desde el frontend" + ciudadano);
+        List<Bache> Baches = bacheService.findByciudadano(ciudadano);
+        Baches.stream().forEach(System.out::println);
+        if (!Baches.isEmpty()) {
+            List<Bache> c = Baches;
 
             return ResponseEntity.ok(c);
+        } else {
+
+            return ResponseEntity.notFound().build();
+
+        }
+    }
+
+    @PostMapping("/getpkfuncionario")
+    private ResponseEntity<Funcionario> GetPkFuncionario(@RequestBody User user) {
+        Optional funcionarios = funcionarioService.findByuser(user);
+        if (!funcionarios.isEmpty()) {
+            Funcionario funcionario = (Funcionario) funcionarios.get();
+
+            return ResponseEntity.ok(funcionario);
         } else {
 
             return ResponseEntity.notFound().build();

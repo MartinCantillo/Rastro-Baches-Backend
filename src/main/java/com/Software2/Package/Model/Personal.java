@@ -8,7 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class Personal {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idp;
 
     private long cedula;
@@ -30,5 +33,8 @@ public class Personal {
 
     private String direccion;
     private String telefono;
+    @ManyToOne
+    @JoinColumn(name = "id_OrdenFK")
+    private Personal personal;
 
 }

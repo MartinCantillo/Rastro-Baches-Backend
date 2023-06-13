@@ -17,7 +17,7 @@ public class OrdenService implements OrdenRepository {
     @Autowired
     private OrdenRepository OrdenRepository;
 
-      @Transactional
+    @Transactional
     @Override
     public <S extends Orden> S save(S entity) {
         return OrdenRepository.save(entity);
@@ -52,11 +52,12 @@ public class OrdenService implements OrdenRepository {
     public long count() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-  @Transactional
+
+    @Transactional
     @Override
     public void deleteById(Long id) {
-OrdenRepository.deleteById(id);    }
+        OrdenRepository.deleteById(id);
+    }
 
     @Override
     public void delete(Orden entity) {

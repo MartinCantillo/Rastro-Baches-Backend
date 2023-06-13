@@ -8,6 +8,7 @@ import com.Software2.Package.Model.Bache;
 import com.Software2.Package.Model.Ciudadano;
 import com.Software2.Package.Repository.BacheRepository;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -68,7 +69,6 @@ public class BacheService implements BacheRepository {
     @Override
     public void deleteAllById(Iterable<? extends Long> ids) {
     }
-
     @Override
     public void deleteAll(Iterable<? extends Bache> entities) {
     }
@@ -78,7 +78,7 @@ public class BacheService implements BacheRepository {
     }
 
     @Override
-    public Optional<Bache> findByciudadano(Ciudadano ciudadano) {
+    public List<Bache> findByciudadano(Ciudadano ciudadano) {
         return BacheRepository.findByciudadano(ciudadano);
     }
 

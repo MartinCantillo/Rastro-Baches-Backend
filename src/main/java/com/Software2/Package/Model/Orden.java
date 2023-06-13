@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,7 +40,5 @@ public class Orden {
     @JoinColumn(name = "id_funcionarioFK")
     private Funcionario funcionario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_personalFK")
-    private Personal personal;
+
 }
