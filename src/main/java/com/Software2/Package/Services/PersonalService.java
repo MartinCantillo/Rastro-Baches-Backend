@@ -16,13 +16,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonalService  {
 
-    @Autowired
-    private PersonalRepository PersonalRepository;
+
+    private final PersonalRepository personalRepository;
+
+    public PersonalService(PersonalRepository personalRepository) {
+        this.personalRepository = personalRepository;
+    }
 
     @Transactional
-
     public <S extends Personal> S save(S entity) {
-        return PersonalRepository.save(entity);
+        return personalRepository.save(entity);
     }
 
 
@@ -32,22 +35,22 @@ public class PersonalService  {
 
 
     public Optional<Personal> findById(Long id) {
-        return PersonalRepository.findById(id);
+        return personalRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return PersonalRepository.existsById(id);
+        return personalRepository.existsById(id);
     }
 
 
     public Iterable<Personal> findAll() {
-        return PersonalRepository.findAll();
+        return personalRepository.findAll();
     }
 
 
     public Iterable<Personal> findAllById(Iterable<Long> ids) {
-        return PersonalRepository.findAllById(ids);
+        return personalRepository.findAllById(ids);
     }
 
 
@@ -57,7 +60,7 @@ public class PersonalService  {
 
     @Transactional
     public void deleteById(Long id) {
-PersonalRepository.deleteById(id);    }
+        personalRepository.deleteById(id);    }
 
 
     public void delete(Personal entity) {
@@ -81,7 +84,7 @@ PersonalRepository.deleteById(id);    }
 
 
     public List<Personal> findByorden(Orden orden) {
-        return PersonalRepository.findByorden(orden);
+        return personalRepository.findByorden(orden);
     }
 
 }

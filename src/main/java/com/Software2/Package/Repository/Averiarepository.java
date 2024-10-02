@@ -7,8 +7,9 @@ package com.Software2.Package.Repository;
 import com.Software2.Package.Model.Averia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface  Averiarepository extends CrudRepository<Averia, Long> {
     
 }

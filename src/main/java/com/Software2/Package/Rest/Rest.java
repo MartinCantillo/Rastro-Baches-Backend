@@ -36,14 +36,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Lazy;
+
 
 @Slf4j // para usar el log
 @RestController
 @RequestMapping("/user/")
 public class Rest {
 
-    @Autowired
-    private PersonalService personalService;
+
 
     @Autowired
     private OrdenService ordenService;
@@ -53,13 +54,18 @@ public class Rest {
 
     @Autowired
     private BacheService bacheService;
+
     @Autowired
     private FuncionarioService funcionarioService;
+
     @Autowired
     private CiudadanoService CiudadanoService;
 
     @Autowired
     private UserService UserService;
+
+    @Autowired
+    private PersonalService personalService;
 
     @PostMapping("/saveuser")
     private ResponseEntity<User> SaveUser(@RequestBody User user) {

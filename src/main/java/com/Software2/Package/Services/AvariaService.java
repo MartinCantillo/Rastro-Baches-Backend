@@ -14,46 +14,49 @@ import org.springframework.stereotype.Service;
 @Service
 public class AvariaService  {
 
-    @Autowired
-    private Averiarepository Averiarepository;
+    private final Averiarepository averiarepository;
+
+    public AvariaService(Averiarepository averiarepository) {
+        this.averiarepository = averiarepository;
+    }
 
     @Transactional
 
     public <S extends Averia> S save(S entity) {
 
-        return Averiarepository.save(entity);
+        return averiarepository.save(entity);
     }
 
 
     public <S extends Averia> Iterable<S> saveAll(Iterable<S> entities) {
-        return Averiarepository.saveAll(entities);
+        return averiarepository.saveAll(entities);
     }
 
 
     public Optional<Averia> findById(Long id) {
-        return Averiarepository.findById(id);
+        return averiarepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return Averiarepository.existsById(id);
+        return averiarepository.existsById(id);
     }
 
 
     public Iterable<Averia> findAll() {
-        return Averiarepository.findAll();
+        return averiarepository.findAll();
     }
 
 
     public Iterable<Averia> findAllById(Iterable<Long> ids) {
-        return Averiarepository.findAllById(ids);
+        return averiarepository.findAllById(ids);
     }
 
 
     @Transactional
 
     public void deleteById(Long id) {
-        Averiarepository.deleteById(id);
+        averiarepository.deleteById(id);
     }
 
 

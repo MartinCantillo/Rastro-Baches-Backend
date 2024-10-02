@@ -14,35 +14,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrdenService   {
 
-    @Autowired
-    private OrdenRepository OrdenRepository;
+    private final OrdenRepository ordenRepository;
+
+    public OrdenService(OrdenRepository ordenRepository) {
+        this.ordenRepository = ordenRepository;
+    }
 
     @Transactional
 
     public <S extends Orden> S save(S entity) {
-        return OrdenRepository.save(entity);
+        return ordenRepository.save(entity);
     }
 
 
 
 
     public Optional<Orden> findById(Long id) {
-        return OrdenRepository.findById(id);
+        return ordenRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return OrdenRepository.existsById(id);
+        return ordenRepository.existsById(id);
     }
 
 
     public Iterable<Orden> findAll() {
-        return OrdenRepository.findAll();
+        return ordenRepository.findAll();
     }
 
 
     public Iterable<Orden> findAllById(Iterable<Long> ids) {
-        return OrdenRepository.findAllById(ids);
+        return ordenRepository.findAllById(ids);
     }
 
 
@@ -53,7 +56,7 @@ public class OrdenService   {
     @Transactional
 
     public void deleteById(Long id) {
-        OrdenRepository.deleteById(id);
+        ordenRepository.deleteById(id);
     }
 
 

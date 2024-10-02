@@ -15,13 +15,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService  {
 
-    @Autowired
-    private UserRepository UserRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Transactional
 
     public <S extends User> S save(S entity) {
-        return UserRepository.save(entity);
+        return userRepository.save(entity);
     }
 
 
@@ -31,22 +34,22 @@ public class UserService  {
 
 
     public Optional<User> findById(Long id) {
-        return UserRepository.findById(id);
+        return userRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return UserRepository.existsById(id);
+        return userRepository.existsById(id);
     }
 
 
     public Iterable<User> findAll() {
-        return UserRepository.findAll();
+        return userRepository.findAll();
     }
 
 
     public Iterable<User> findAllById(Iterable<Long> ids) {
-        return UserRepository.findAllById(ids);
+        return userRepository.findAllById(ids);
     }
 
 
@@ -56,7 +59,7 @@ public class UserService  {
 
     @Transactional
     public void deleteById(Long id) {
-UserRepository.deleteById(id);    }
+        userRepository.deleteById(id);    }
 
 
     public void delete(User entity) {
@@ -80,7 +83,7 @@ UserRepository.deleteById(id);    }
 
     @Transactional
     public Optional<User> findByusername(String username) {
-        return UserRepository.findByusername(username);
+        return userRepository.findByusername(username);
     }
     
 

@@ -17,38 +17,41 @@ import org.springframework.stereotype.Service;
 @Service
 public class CiudadanoService {
 
-    @Autowired
-    private CiudadanoRepository CiudadanoRepository;
+    private final CiudadanoRepository ciudadanoRepository;
+
+    public CiudadanoService(CiudadanoRepository ciudadanoRepository) {
+        this.ciudadanoRepository = ciudadanoRepository;
+    }
 
     @Transactional
 
     public <S extends Ciudadano> S save(S entity) {
-        return CiudadanoRepository.save(entity);
+        return ciudadanoRepository.save(entity);
     }
 
 
     public <S extends Ciudadano> Iterable<S> saveAll(Iterable<S> entities) {
-        return CiudadanoRepository.saveAll(entities);
+        return ciudadanoRepository.saveAll(entities);
     }
 
 
     public Optional<Ciudadano> findById(Long id) {
-        return CiudadanoRepository.findById(id);
+        return ciudadanoRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return CiudadanoRepository.existsById(id);
+        return ciudadanoRepository.existsById(id);
     }
 
 
     public Iterable<Ciudadano> findAll() {
-        return CiudadanoRepository.findAll();
+        return ciudadanoRepository.findAll();
     }
 
 
     public Iterable<Ciudadano> findAllById(Iterable<Long> ids) {
-        return CiudadanoRepository.findAllById(ids);
+        return ciudadanoRepository.findAllById(ids);
     }
 
 
@@ -59,7 +62,7 @@ public class CiudadanoService {
     @Transactional
 
     public void deleteById(Long id) {
-        CiudadanoRepository.deleteById(id);
+        ciudadanoRepository.deleteById(id);
     }
 
 
@@ -84,7 +87,7 @@ public class CiudadanoService {
 
 
     public Optional<Ciudadano> findByUser(User user) {
-        return CiudadanoRepository.findByUser(user);
+        return ciudadanoRepository.findByUser(user);
     }
 
 

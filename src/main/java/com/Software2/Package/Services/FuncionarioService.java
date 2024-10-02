@@ -17,13 +17,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class FuncionarioService {
 
-    @Autowired
-    private FuncionarioRepository FuncionarioRepository;
+    private final FuncionarioRepository funcionarioRepository;
+
+    public FuncionarioService(FuncionarioRepository funcionarioRepository) {
+        this.funcionarioRepository = funcionarioRepository;
+    }
 
     @Transactional
 
     public <S extends Funcionario> S save(S entity) {
-        return FuncionarioRepository.save(entity);
+        return funcionarioRepository.save(entity);
     }
 
 
@@ -33,22 +36,22 @@ public class FuncionarioService {
 
 
     public Optional<Funcionario> findById(Long id) {
-        return FuncionarioRepository.findById(id);
+        return funcionarioRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return FuncionarioRepository.existsById(id);
+        return funcionarioRepository.existsById(id);
     }
 
 
     public Iterable<Funcionario> findAll() {
-        return FuncionarioRepository.findAll();
+        return funcionarioRepository.findAll();
     }
 
 
     public Iterable<Funcionario> findAllById(Iterable<Long> ids) {
-        return FuncionarioRepository.findAllById(ids);
+        return funcionarioRepository.findAllById(ids);
     }
 
 
@@ -59,7 +62,7 @@ public class FuncionarioService {
     @Transactional
 
     public void deleteById(Long id) {
-        FuncionarioRepository.deleteById(id);
+        funcionarioRepository.deleteById(id);
     }
 
 
@@ -70,6 +73,6 @@ public class FuncionarioService {
 
 
     public Optional<Funcionario> findByuser(User user) {
-        return FuncionarioRepository.findByuser(user);
+        return funcionarioRepository.findByuser(user);
     }
 }

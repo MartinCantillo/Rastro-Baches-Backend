@@ -17,13 +17,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class BacheService {
 
-    @Autowired
-    private BacheRepository BacheRepository;
+    private final BacheRepository bacheRepository;
+
+    public BacheService(BacheRepository bacheRepository) {
+        this.bacheRepository = bacheRepository;
+    }
 
     @Transactional
 
     public <S extends Bache> S save(S entity) {
-        return BacheRepository.save(entity);
+        return bacheRepository.save(entity);
     }
 
 
@@ -33,22 +36,22 @@ public class BacheService {
 
 
     public Optional<Bache> findById(Long id) {
-        return BacheRepository.findById(id);
+        return bacheRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return BacheRepository.existsById(id);
+        return bacheRepository.existsById(id);
     }
 
 
     public Iterable<Bache> findAll() {
-        return BacheRepository.findAll();
+        return bacheRepository.findAll();
     }
 
 
     public Iterable<Bache> findAllById(Iterable<Long> ids) {
-        return BacheRepository.findAllById(ids);
+        return bacheRepository.findAllById(ids);
     }
 
 
@@ -59,27 +62,13 @@ public class BacheService {
     @Transactional
 
     public void deleteById(Long id) {
-        BacheRepository.deleteById(id);
+        bacheRepository.deleteById(id);
     }
 
-
-    public void delete(Bache entity) {
-    }
-
-
-    public void deleteAllById(Iterable<? extends Long> ids) {
-    }
-
-    public void deleteAll(Iterable<? extends Bache> entities) {
-    }
-
-
-    public void deleteAll() {
-    }
 
 
     public List<Bache> findByciudadano(Ciudadano ciudadano) {
-        return BacheRepository.findByciudadano(ciudadano);
+        return bacheRepository.findByciudadano(ciudadano);
     }
 
 }

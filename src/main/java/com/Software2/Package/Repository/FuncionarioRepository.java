@@ -11,8 +11,9 @@ import com.Software2.Package.Model.User;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface FuncionarioRepository extends CrudRepository<Funcionario, Long> {
     Optional<Funcionario> findByuser(User user);
 }

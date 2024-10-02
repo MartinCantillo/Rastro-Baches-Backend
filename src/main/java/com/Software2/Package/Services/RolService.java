@@ -14,13 +14,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class RolService  {
 
-    @Autowired
-    private RolRepository RolRepository;
+    private final RolRepository rolRepository;
+
+    public RolService(RolRepository rolRepository) {
+        this.rolRepository = rolRepository;
+    }
 
     @Transactional
 
     public <S extends Rol> S save(S entity) {
-        return RolRepository.save(entity);
+        return rolRepository.save(entity);
     }
 
 
@@ -30,22 +33,22 @@ public class RolService  {
 
 
     public Optional<Rol> findById(Long id) {
-        return RolRepository.findById(id);
+        return rolRepository.findById(id);
     }
 
 
     public boolean existsById(Long id) {
-        return RolRepository.existsById(id);
+        return rolRepository.existsById(id);
     }
 
 
     public Iterable<Rol> findAll() {
-        return RolRepository.findAll();
+        return rolRepository.findAll();
     }
 
 
     public Iterable<Rol> findAllById(Iterable<Long> ids) {
-        return RolRepository.findAllById(ids);
+        return rolRepository.findAllById(ids);
     }
 
 

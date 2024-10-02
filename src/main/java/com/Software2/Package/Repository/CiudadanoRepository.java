@@ -9,7 +9,9 @@ import com.Software2.Package.Model.User;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CiudadanoRepository extends CrudRepository<Ciudadano, Long> {
 
     Optional<Ciudadano> findByUser(User user);

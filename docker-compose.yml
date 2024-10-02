@@ -1,0 +1,50 @@
+# Contenerizar la app
+# Versión de docker-compose
+#version: '3'
+
+# Definir servicios
+services:
+  api_rest:
+    container_name: api_rest_container
+    image: api_rest:1.0.0 # nombre de la imagen a generar
+    build: . # construir la imagen desde el Dockerfile ubicado en el contexto actual
+    ports:
+      - "8023:8023" # Mapeo del puerto 8023 del contenedor al host
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://api_db:3306/bdmicroservice
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: bdm
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: true
+      #SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+    #restart: always
+    depends_on:
+      - api_db # Define la dependencia para que la base de datos se inicialice antes del servicio API REST
+    networks:
+      - api_network # Conecta el servicio a la red 'api_network'
+
+  api_db:
+    container_name: api_db
+    image: mysql:8.0  # Imagen de MySQL versión 8
+    ports:
+      - "3306:3306"  # Mapeo del puerto de MySQL al host
+    environment:
+      MYSQL_ROOT_PASSWORD: bdm # Contraseña del usuario root para MySQL
+      MYSQL_DATABASE: bdmicroservice # Nombre de la base de datos que se creará
+
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql # Volumen para persistencia de datos en MySQL
+    networks:
+      - api_network # Conecta el servicio a la red 'api_network'
+
+# Definir la red
+networks:
+  api_network:
+    driver: bridge  # Crea una red aislada utilizando el controlador 'bridge'
+
+# Definir volúmenes
+volumes:
+  db_data:
+    driver: local # Volumen local para almacenar datos persistentes

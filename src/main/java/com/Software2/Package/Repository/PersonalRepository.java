@@ -9,7 +9,9 @@ import com.Software2.Package.Model.Orden;
 import com.Software2.Package.Model.Personal;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PersonalRepository extends CrudRepository<Personal, Long> {
 
     List<Personal> findByorden(Orden orden);

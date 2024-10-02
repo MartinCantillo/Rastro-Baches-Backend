@@ -6,7 +6,9 @@ package com.Software2.Package.Repository;
 
 import com.Software2.Package.Model.Rol;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RolRepository extends CrudRepository<Rol, Long> {
 
 }
