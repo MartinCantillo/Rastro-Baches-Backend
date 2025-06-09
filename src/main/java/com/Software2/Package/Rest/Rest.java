@@ -278,4 +278,10 @@ public class Rest {
 
         }
     }
+    @GetMapping("/GetAllPersonal")
+private ResponseEntity<Iterable<Personal>> getAllPersonal() {
+    Iterable<Personal> personalList = personalService.findAll();
+    return ResponseEntity.ok(personalList);
+}
+
 }

@@ -1,23 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.Software2.Package.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.List;
+import jakarta.persistence.*;
+import java.util.Objects;
 import java.util.Set;
-//import javax.validation.constraints.NotEmpty;
-import lombok.Data;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 @Table(name = "rol")
 public class Rol {
@@ -26,17 +15,47 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //@NotEmpty
     private String nombre;
 
     @OneToMany(mappedBy = "rol")
+    @JsonIgnore 
     private Set<User> users;
+
+    public Rol() {
+    }
 
     public Rol(long id) {
         this.id = id;
     }
 
-    public Rol() {
+    public Rol(long id, String nombre, Set<User> users) {
+        this.id = id;
+        this.nombre = nombre;
+        this.users = users;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 }

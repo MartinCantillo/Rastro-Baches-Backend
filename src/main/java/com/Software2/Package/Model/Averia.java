@@ -1,35 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.Software2.Package.Model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Objects;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Entity
 @Table(name = "averia")
 public class Averia {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idA;
 
-    private String TipoDano;
+    private String tipoDano;
 
-    private String Costo;
+    private String costo;
 
     @ManyToOne
     @JoinColumn(name = "id_funcionarioFK")
@@ -39,4 +26,56 @@ public class Averia {
     @JoinColumn(name = "id_bacheFK")
     private Bache bache;
 
+    public Averia() {
+    }
+
+    public Averia(long idA, String tipoDano, String costo, Funcionario funcionario, Bache bache) {
+        this.idA = idA;
+        this.tipoDano = tipoDano;
+        this.costo = costo;
+        this.funcionario = funcionario;
+        this.bache = bache;
+    }
+
+    public long getIdA() {
+        return idA;
+    }
+
+    public void setIdA(long idA) {
+        this.idA = idA;
+    }
+
+    public String getTipoDano() {
+        return tipoDano;
+    }
+
+    public void setTipoDano(String tipoDano) {
+        this.tipoDano = tipoDano;
+    }
+
+    public String getCosto() {
+        return costo;
+    }
+
+    public void setCosto(String costo) {
+        this.costo = costo;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Bache getBache() {
+        return bache;
+    }
+
+    public void setBache(Bache bache) {
+        this.bache = bache;
+    }
+
+  
 }
